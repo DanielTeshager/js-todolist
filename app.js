@@ -23,9 +23,27 @@ loadEventListeners();
 
 function loadEventListeners() {
     //DOM load event
+   document.addEventListener('DOMContentLoaded', getTasks);
    form.addEventListener('submit', addTask);
    clearBtn.addEventListener('click', clearTasks);
    filter.addEventListener('keyup', filterTasks);
+}
+//get tasks from local storage
+function getTasks() {
+    let tasks;
+    if(localStorage.getItem('tasks') === null) {
+        tasks = [];
+    } else {
+        tasks = JSON.parse(localStorage.getItem('tasks'));
+    }
+    tasks.forEach(function(task) {
+        //create tr element
+        const tr = document.createElement('tr');
+        //create td elements
+        tr.innerHTML = `<td>${task.task}</td><td>${task.description}</td><td>${task.date}</td><td>${task.time}</td><td>${task.priority}</td><td>${task.status}</td>`;
+        //append tr to the table
+        taskList.appendChild(tr);
+    });
 }
 
 function addTask(e) {
@@ -34,7 +52,11 @@ function addTask(e) {
     } else {
         //update the task table
         updateTaskTable();
+        //clear the form
+        form.reset();
+        //add the task to the local storage
     }
+
     e.preventDefault();
 }
 
@@ -42,6 +64,8 @@ function clearTasks(e) {
     //clear the task table
     taskList.innerHTML = '';
 
+    //clear the local storage
+    localStorage.clear();
     e.preventDefault();
 }
 
@@ -60,30 +84,28 @@ function updateTaskTable() {
     row.innerHTML = `<td>${task.task}</td><td>${task.description}</td><td>${task.date}</td><td>${task.time}</td><td>${task.priority}</td><td>${task.status}</td>`;
     //append row to the table
     taskList.appendChild(row);
+    addTaskToLocalStorage(task);
+}
+//add task to local storage
+function addTaskToLocalStorage(task) {
+    let tasks;
+    if(localStorage.getItem('tasks') === null) {
+        tasks = [];
+    } else {
+        tasks = JSON.parse(localStorage.getItem('tasks'));
+    }
+    tasks.push(task);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 function filterTasks(e) {
     const text = e.target.value.toLowerCase();
     document.querySelectorAll('.task-item').forEach(function(task) {
-        // const item = task.firstChild.textContent;
-        // if(item.toLowerCase().indexOf(text) != -1) {
-        //     task.style.display = 'block';
-        // } else {
-        //     task.style.display = 'none';
-        // }
-        // task.forEach(function(item) {
-        //     if(item.textContent.toLowerCase().indexOf(text) != -1) {
-        //         task.style.display = 'block';
-        //     } else {
-        //         task.style.display = 'none';
-        //     }
-        // });
         if(task.firstElementChild.textContent.toLowerCase().indexOf(text) != -1) {
             task.style.display = 'table-row';
             console.log(task);
         }else if(task.lastElementChild.textContent.toLowerCase().indexOf(text) != -1) {
             task.style.display = 'table-row';
-            console.log(task);
         }else{
             task.style.display = 'none';
         }
