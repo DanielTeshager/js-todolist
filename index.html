@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- add materialize css cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todolist App</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+              <div class="col s12">
+                <div class="card">
+                     <div class="card-content">
+                        <span class="card-title">Task List</span>
+                        <div class="row">
+                            <form id="task-form">
+                                <div class="input-field col s12">
+                                    <input type="text" name="task" id="task">
+                                    <label for="task">Task</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <input type="text" name="description" id="description">
+                                    <label for="description">Description</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <input type="text" name="date" id="date" class="datepicker">
+                                    <label for="date">Date</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <input type="text" name="time" id="time" class="timepicker">
+                                    <label for="time">Time</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <select id='priority'>
+                                        <option value="" disabled selected>Choose your priority</option>
+                                        <option value="1">Option 1</option>
+                                        <option value="2">Option 2</option>
+                                        <option value="3">Option 3</option>
+                                      </select>
+                                    <!-- <label for='priority'>Priority</label> -->
+                                </div>
+                                <div class="input-field col s12">
+                                    <input type="text" name="status" id="status">
+                                    <label for="status">Status</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <input type="submit" value="Add Task" class="btn submit-btn">
+                                </div>
+                            </form>
+                        </div>
+
+                     </div>
+                </div>
+                <div class="card-action">
+                    <div class="input-field col s12">
+                        <input type="text" name="filter" id="filter">
+                        <label for="filter">Filter</label>
+                    </div>
+
+                    <table class="striped" id="collection">
+                        <thead>
+                            <tr>
+                                <th>Task</th>
+                                <th>Description</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="task-list">
+                            <tr class="task-item">
+                                <td>Task 1</td>
+                                <td>Description 1</td>
+                                <td>Date 1</td>
+                                <td>Time 1</td>
+                                <td>Priority 1</td>
+                                <td>Status 1</td>
+                            </tr>
+                            <tr class="task-item">
+                                <td>Task 2</td>
+                                <td>Description 2</td>
+                                <td>Date 2</td>
+                                <td>Time 2</td>
+                                <td>Priority 2</td>
+                                <td>Status 2</td>
+                            </tr>
+                            <tr class="task-item">
+                                <td>Task 3</td>
+                                <td>Description 3</td>
+                                <td>Date 3</td>
+                                <td>Time 3</td>
+                                <td>Priority 3</td>
+                                <td>Status 3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="clear-task">
+                        <a href="#" class="btn clear-btn orange" id="clear-tasks">Clear Tasks</a>
+                    </div>
+                </div>
+              </div>
+         </div>
+
+
+
+   <!-- add jquery cdn -->
+   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+   <script src="app.js"></script>
+</body>
+</html>
